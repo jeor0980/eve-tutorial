@@ -17,8 +17,14 @@ schema = {
         'required': True,
         'unique': True,
     },
+    'middlename': {
+        'dependencies': ['firstname', 'lastname'],
+    },
     'born': {'type': 'datetime'},
-    'age': {'readonly': True},
+    'age': {
+        'type': 'integer',
+        'isodd': True
+    },
     'role': {
         'type': 'list',
         'allowed': ['author', 'contributor', 'copy'],
@@ -26,10 +32,14 @@ schema = {
     },
     'location': {
         'type': 'dict',
+        'required': True,
         'schema': {
             'address': {'type': 'string'},
             'city': {'type': 'string', 'required': True}
         }
+    },
+    'email': {
+        'type': 'email',
     }
 }
 
